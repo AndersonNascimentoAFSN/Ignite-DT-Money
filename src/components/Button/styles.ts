@@ -19,6 +19,7 @@ export const ButtonContainer = styled.button<ButtonStylesProps>`
 
       &:hover {
         background-color: ${props.theme.colors["green-300"]};
+        transition: background-color 0.2s;
       }
     `}
 
