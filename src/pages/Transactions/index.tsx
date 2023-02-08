@@ -11,7 +11,26 @@ export function Transactions() {
       <Summary />
 
       <TransactionsContainer>
-        <TransactionsTable />
+        <TransactionsTable
+          transactionsFormatted={[
+            {
+              id: "axas",
+              title: "Desenvolvimento Web",
+              category: "Venda",
+              formattedPrice: "R$ 12.000,00",
+              formattedDate: "13/01/2023",
+              price: 12000,
+            },
+            {
+              id: "kdjkas",
+              title: "Headset",
+              category: "Itens",
+              formattedPrice: "R$ 150,00",
+              formattedDate: "12/01/2023",
+              price: -150,
+            },
+          ]}
+        />
       </TransactionsContainer>
     </Container>
   );
