@@ -1,4 +1,5 @@
 import { Header } from "../../components";
+import { SearchForm } from "../../components/SearchForm";
 import { Summary } from "../../components/Summary";
 import { TransactionsTable } from "../../components/TransactionsTable";
 import { Container, TransactionsContainer } from "./styles";
@@ -11,6 +12,8 @@ export function Transactions() {
       <Summary />
 
       <TransactionsContainer>
+        <SearchForm />
+        
         <TransactionsTable
           transactionsFormatted={[
             {
