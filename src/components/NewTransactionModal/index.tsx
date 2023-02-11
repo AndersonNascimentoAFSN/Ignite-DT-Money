@@ -36,18 +36,18 @@ export function NewTransactionModal() {
           <Input type="text" placeholder="Categoria" required />
 
           <TransactionType>
-            <TransactionTypeButton>
+            <TransactionTypeButton value="income" variant="income">
               <ArrowCircleUpIcon />
               Entrada
             </TransactionTypeButton>
 
-            <TransactionTypeButton>
+            <TransactionTypeButton value="outcome" variant="outcome">
               <ArrowCircleDownIcon />
               Saída
             </TransactionTypeButton>
           </TransactionType>
 
-          <Button type="submit">Cadastrar</Button>
+          <Button type="button">Cadastrar</Button>
         </FormTransactionModal>
       </Content>
     </Dialog.Portal>

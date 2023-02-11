@@ -1,7 +1,8 @@
 import * as Dialog from "@radix-ui/react-dialog";
+import * as RadioGroup from "@radix-ui/react-radio-group";
 import { ArrowCircleDown, ArrowCircleUp } from "phosphor-react";
 
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const NewTransactionModalContainer = styled.div``;
 
@@ -63,15 +64,20 @@ export const CloseButton = styled.button`
   }
 `;
 
-export const TransactionType = styled.div`
+export const TransactionType = styled(RadioGroup.Root)`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   margin-top: 0.5rem;
 `;
 
+type TransactionTypeButtonProps = {
+  variant: "income" | "outcome";
+};
 
-export const TransactionTypeButton = styled.button`
+export const TransactionTypeButton = styled(
+  RadioGroup.Item
+)<TransactionTypeButtonProps>`
   background-color: ${(props) => props.theme.colors["gray-700"]};
   padding: 1rem;
   display: flex;
@@ -82,19 +88,58 @@ export const TransactionTypeButton = styled.button`
   border: 0;
   color: ${(props) => props.theme.colors["gray-300"]};
 
-  &:hover {
-    background-color: ${(props) => props.theme.colors["gray-600"]};
+  &[data-state="unchecked"]:hover {
+    background: ${(props) => props.theme.colors["gray-600"]};
     transition: background-color 0.2s;
   }
 
+  ${(props) =>
+    props.variant === "income" &&
+    css`
+      svg {
+        color: ${(props) => props.theme.colors["green-300"]};
+      }
+    `}
+
+  ${(props) =>
+    props.variant === "outcome" &&
+    css`
+      svg {
+        color: ${(props) => props.theme.colors["red-300"]};
+      }
+    `}
+
+  ${(props) =>
+    props.variant === "income" &&
+    css`
+      &[data-state="checked"] {
+        color: ${(props) => props.theme.colors.white};
+        background: ${props.theme.colors["green-500"]};
+
+        svg {
+          color: ${(props) => props.theme.colors.white};
+        }
+      }
+    `}
+
+  ${(props) =>
+    props.variant === "outcome" &&
+    css`
+      &[data-state="checked"] {
+        color: ${(props) => props.theme.colors.white};
+        background: ${props.theme.colors["red-500"]};
+
+        svg {
+          color: ${(props) => props.theme.colors.white};
+        }
+      }
+    `}
 `;
 
 export const ArrowCircleUpIcon = styled(ArrowCircleUp).attrs((props) => ({
   size: 24,
-  color: props.theme.colors["green-300"],
 }))``;
 
 export const ArrowCircleDownIcon = styled(ArrowCircleDown).attrs((props) => ({
   size: 24,
-  color: props.theme.colors["red-300"],
 }))``;
