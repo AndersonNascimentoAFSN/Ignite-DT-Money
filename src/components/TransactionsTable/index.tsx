@@ -1,3 +1,4 @@
+import { ITransactionFormatted } from "../../@types/transaction";
 import {
   PriceHighlight,
   TransactionsTableBody,
@@ -7,23 +8,14 @@ import {
 } from "./styles";
 
 type TransactionsTableProps = {
-  transactionsFormatted: {
-    id: string;
-    title: string;
-    price: number;
-    formattedPrice: string;
-    category: string;
-    formattedDate: string;
-  }[];
+  transactions: ITransactionFormatted[];
 };
 
-export function TransactionsTable({
-  transactionsFormatted,
-}: TransactionsTableProps) {
+export function TransactionsTable({ transactions }: TransactionsTableProps) {
   return (
     <TransactionsTableContainer>
       <TransactionsTableBody>
-        {transactionsFormatted.map(
+        {transactions?.map(
           ({ id, title, price, category, formattedPrice, formattedDate }) => (
             <TransactionsTableTr key={id}>
               <TransactionsTableTd>{title}</TransactionsTableTd>

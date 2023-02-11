@@ -1,14 +1,14 @@
-import { ComponentPropsWithoutRef, ReactNode } from "react";
+import { ButtonHTMLAttributes, ReactNode } from "react";
 import { ButtonContainer, SizeStylesProps } from "./styles";
 
-interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: ReactNode;
   size?: SizeStylesProps;
-}
+};
 
 export function Button({ children, size = "medium", ...props }: ButtonProps) {
   return (
-    <ButtonContainer {...props} size={size}>
+    <ButtonContainer size={size} {...props}>
       {children}
     </ButtonContainer>
   );
