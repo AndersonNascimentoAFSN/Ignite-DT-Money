@@ -5,7 +5,16 @@ import { Button } from "../Button";
 
 import { Input } from "../Input";
 
-import { Content, FormTransactionModal, CloseButton, Overlay } from "./styles";
+import {
+  Content,
+  FormTransactionModal,
+  CloseButton,
+  Overlay,
+  TransactionType,
+  TransactionTypeButton,
+  ArrowCircleUpIcon,
+  ArrowCircleDownIcon,
+} from "./styles";
 
 export function NewTransactionModal() {
   return (
@@ -17,7 +26,7 @@ export function NewTransactionModal() {
 
         <Dialog.Close asChild aria-label="Close">
           <CloseButton>
-            <X size={24}/>
+            <X size={24} />
           </CloseButton>
         </Dialog.Close>
 
@@ -25,6 +34,18 @@ export function NewTransactionModal() {
           <Input type="text" placeholder="Descrição" required />
           <Input type="number" placeholder="Preço" required />
           <Input type="text" placeholder="Categoria" required />
+
+          <TransactionType>
+            <TransactionTypeButton>
+              <ArrowCircleUpIcon />
+              Entrada
+            </TransactionTypeButton>
+
+            <TransactionTypeButton>
+              <ArrowCircleDownIcon />
+              Saída
+            </TransactionTypeButton>
+          </TransactionType>
 
           <Button type="submit">Cadastrar</Button>
         </FormTransactionModal>
