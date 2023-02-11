@@ -8,6 +8,8 @@ export type ButtonStylesProps = {
 
 export const ButtonContainer = styled.button<ButtonStylesProps>`
   all: unset;
+  
+  text-align: center;
 
   ${(props) =>
     css`
