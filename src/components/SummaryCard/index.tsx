@@ -1,3 +1,5 @@
+import { priceFormatter } from "../../utils/formatter";
+
 import {
   IconCardArrowCircleDown,
   IconCardArrowCircleUp,
@@ -15,10 +17,7 @@ type SummaryCardProps = {
 };
 
 export function SummaryCard({ title, value, type }: SummaryCardProps) {
-  const valueFormatted = Intl.NumberFormat("pt-BR", {
-    currency: "BRL",
-    style: "currency",
-  }).format(value);
+  const valueFormatted = priceFormatter.format(value);
 
   return (
     <SummaryCardContainer value={value} type={type}>

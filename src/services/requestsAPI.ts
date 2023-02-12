@@ -1,6 +1,8 @@
 import { ITransactionData } from "../@types/transaction";
 import { instanceAxios } from "./instanceAxios";
 
+import { dateFormatter, priceFormatter } from "../utils/formatter";
+
 export class requestsAPI {
   static async getAllTransactions() {
     return instanceAxios
@@ -11,13 +13,8 @@ export class requestsAPI {
           title: transaction.title,
           category: transaction.category,
           type: transaction.type,
-          formattedPrice: new Intl.NumberFormat("pt-BR", {
-            style: "currency",
-            currency: "BRL",
-          }).format(transaction.price),
-          formattedDate: Intl.DateTimeFormat("pt-BR", {}).format(
-            new Date(transaction.created_at)
-          ),
+          formattedPrice: priceFormatter.format(transaction.price),
+          formattedDate: dateFormatter.format(new Date(transaction.created_at)),
           date: transaction.created_at,
           price: transaction.price,
         }))
