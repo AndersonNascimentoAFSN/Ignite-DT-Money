@@ -3,7 +3,7 @@ export interface ITransactionData {
     id: string;
     title: string;
     category: string;
-    type: string;
+    type: "income" | "outcome";
     price: number;
     created_at: string;
   }[];
@@ -13,7 +13,7 @@ export interface ITransactionFormatted {
   id: string;
   title: string;
   category: string;
-  type: string;
+  type: "income" | "outcome";
   price: number;
   formattedPrice: string;
   date: string;

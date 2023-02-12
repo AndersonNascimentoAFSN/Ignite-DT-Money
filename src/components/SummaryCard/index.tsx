@@ -15,6 +15,11 @@ type SummaryCardProps = {
 };
 
 export function SummaryCard({ title, value, type }: SummaryCardProps) {
+  const valueFormatted = Intl.NumberFormat("pt-BR", {
+    currency: "BRL",
+    style: "currency",
+  }).format(value);
+
   return (
     <SummaryCardContainer value={value} type={type}>
       <SummaryCardHeader>
@@ -24,7 +29,7 @@ export function SummaryCard({ title, value, type }: SummaryCardProps) {
         {type === "total" && <IconCardCurrencyDollar />}
       </SummaryCardHeader>
 
-      <SummaryCardValue>{value}</SummaryCardValue>
+      <SummaryCardValue>{valueFormatted}</SummaryCardValue>
     </SummaryCardContainer>
   );
 }
