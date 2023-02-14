@@ -1,4 +1,3 @@
-import { ButtonHTMLAttributes } from "react";
 import styled, { css } from "styled-components";
 
 export type SizeStylesProps = "small" | "medium" | "large";
