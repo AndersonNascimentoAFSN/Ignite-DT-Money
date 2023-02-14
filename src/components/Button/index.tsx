@@ -1,15 +1,19 @@
-import { ButtonHTMLAttributes, ReactNode } from "react";
+import { ReactNode, forwardRef } from "react";
 import { ButtonContainer, SizeStylesProps } from "./styles";
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+type ButtonProps = {
   children: ReactNode;
   size?: SizeStylesProps;
 };
 
-export function Button({ children, size = "medium", ...props }: ButtonProps) {
-  return (
-    <ButtonContainer size={size} {...props}>
-      {children}
-    </ButtonContainer>
-  );
-}
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (props, ref) => {
+    const { size = 'medium', children, ...buttonProps } = props;
+
+    return (
+      <ButtonContainer size={size} {...buttonProps} ref={ref}>
+        {children}
+      </ButtonContainer>
+    );
+  }
+);
