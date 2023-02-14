@@ -21,7 +21,7 @@ export class requestsAPI {
       )
       .catch((error) => {
         console.log(error);
-        return [];
+        // return [];
       });
   }
 }

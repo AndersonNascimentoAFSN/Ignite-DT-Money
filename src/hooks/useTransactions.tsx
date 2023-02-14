@@ -17,7 +17,7 @@ export function useTransactions() {
     const getTransactions = async () => {
       setTransactionsLoading(true);
       const transactionsData = await requestsAPI.getAllTransactions();
-      setTransactions(transactionsData);
+      setTransactions(transactionsData ? transactionsData : []);
       setTransactionsLoading(false);
     };
     getTransactions();
