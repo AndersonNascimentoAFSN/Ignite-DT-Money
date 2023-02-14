@@ -1,20 +1,25 @@
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ErrorBoundary } from "react-error-boundary";
 import { ThemeProvider } from "styled-components";
+
+import { Transactions } from "./pages/Transactions";
+import { ErrorFallback } from "./components/ErrorFallback";
 
 import { GlobalStyle } from "./styles/global";
 import { defaultTheme } from "./styles/themes/default";
 
-import { Transactions } from "./pages/Transactions";
 
 export function App() {
   const queryClient = new QueryClient();
 
   return (
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
     <ThemeProvider theme={defaultTheme}>
       <QueryClientProvider client={queryClient}>
         <GlobalStyle />
         <Transactions />
       </QueryClientProvider>
     </ThemeProvider>
+    </ErrorBoundary>
   );
 }
