@@ -20,7 +20,8 @@ export function SearchForm() {
     resolver: zodResolver(searchFormSchema),
   });
 
-  function handleSearchTransactions(data: SearchFormInputs) {
+  async function handleSearchTransactions(data: SearchFormInputs) {
+    await new Promise(resolve => setTimeout(resolve, 2000))
     console.log(data);
   }
 
@@ -29,10 +30,11 @@ export function SearchForm() {
       <Input
         type="text"
         placeholder="Busque por transações"
+        autoComplete="off"
         {...register("query")}
       />
 
-      <Button type="submit">
+      <Button type="submit" disabled={isSubmitting}>
         <MagnifyingGlass size={20} />
         Buscar
       </Button>

@@ -23,6 +23,7 @@ export const Button = styled.button`
   align-items: center;
   gap: ${(props) => props.theme.spaces[12]};
 
+  cursor: pointer;
   border: 0;
   padding: ${(props) => props.theme.spaces[16]};
   background: transparent;
@@ -31,7 +32,12 @@ export const Button = styled.button`
   font-weight: ${(props) => props.theme.fonts.weights.bold};
   border-radius: 6px;
 
-  &:hover {
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled):hover {
     background: ${(props) => props.theme.colors["green-500"]};
     border: 1px solid ${(props) => props.theme.colors["green-500"]};
     color: ${(props) => props.theme.colors["white"]};
