@@ -19,7 +19,7 @@ export const ButtonContainer = styled.button<ButtonStylesProps>`
       font-weight: ${props.theme.fonts.weights.bold};
       line-height: ${props.theme.fonts.lineHeight};
 
-      &:hover {
+      &:not(:disabled):hover  {
         background-color: ${props.theme.colors["green-300"]};
         transition: background-color 0.2s;
       }
@@ -50,4 +50,9 @@ export const ButtonContainer = styled.button<ButtonStylesProps>`
   border: 0;
 
   cursor: pointer;
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
 `;

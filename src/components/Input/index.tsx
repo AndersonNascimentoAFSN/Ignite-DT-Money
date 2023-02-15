@@ -1,11 +1,24 @@
-import { InputHTMLAttributes, ComponentProps } from "react";
+import { forwardRef } from "react";
 
 import { InputContainer } from "./styled";
 
-type InputProps =  InputHTMLAttributes<HTMLInputElement> & ComponentProps<typeof InputContainer> 
+export type Ref = HTMLInputElement;
 
-export function Input(props: InputProps) {
+type InputProps = {
+  disabled?: boolean;
+  type?: string;
+  placeholder?: string;
+};
+
+export const Input = forwardRef<Ref, InputProps>((props, ref) => {
+  const { type, placeholder, ...inputProps } = props;
+
   return (
-    <InputContainer {...props}/>
-  )
-}
+    <InputContainer
+      type={type}
+      placeholder={placeholder}
+      ref={ref}
+      {...inputProps}
+    />
+  );
+});
