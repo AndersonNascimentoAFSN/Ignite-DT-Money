@@ -1,12 +1,10 @@
 export interface ITransactionData {
-  transactions: {
-    id: string;
-    title: string;
-    category: string;
-    type: "income" | "outcome";
-    price: number;
-    created_at: string;
-  }[];
+  id: string;
+  title: string;
+  category: string;
+  type: "income" | "outcome";
+  price: number;
+  created_at: string;
 }
 
 export interface ITransactionFormatted {

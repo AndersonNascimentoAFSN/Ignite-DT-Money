@@ -4,12 +4,12 @@ import { SearchForm } from "../../components/SearchForm";
 import { Summary } from "../../components/Summary";
 import { TransactionsTable } from "../../components/TransactionsTable";
 import { useTransactions } from "../../hooks/useTransactions";
-import { useTransactionsAsync } from "../../hooks/useTransactionsAsync";
 
 import { Container, TransactionsContainer } from "./styles";
 
 export function Transactions() {
-  const { transactions } = useTransactions();
+  const transactions = useTransactions();
+  console.log(transactions);
 
   return (
     <Container>
@@ -18,7 +18,7 @@ export function Transactions() {
       <Summary />
 
       <TransactionsContainer>
-        <SearchForm />
+        {/* <SearchForm /> */}
 
         {
           <Suspense

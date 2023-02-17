@@ -1,11 +1,22 @@
-import { atom, selector } from "recoil";
+import { atom, selector, selectorFamily } from "recoil";
 import { requestsAPI } from "../../services/requestsAPI";
 
 import { ITransactionFormatted } from "./../../@types/transaction";
 
-export const transactionsStore = atom<ITransactionFormatted[]>({
-  key: "transactionStore",
-  default: [],
+export const queryAtom = atom({
+  key: "query",
+  default: {
+    query: "",
+  },
+});
+
+export const transactionsStore = selector({
+  key: "transactions",
+  get: async () => {
+    const transactions = await requestsAPI.getAllTransactions();
+
+    return transactions;
+  },
 });
 
 export const transactionsSummary = selector({
@@ -13,31 +24,28 @@ export const transactionsSummary = selector({
   get: ({ get }) => {
     const transactionsList = get(transactionsStore);
 
-    return transactionsList.reduce(
-      (acc, curr) => {
-        if (curr.type === "income") acc["income"] += curr.price;
-        if (curr.type === "outcome") acc["outcome"] += curr.price;
-        acc.total += curr.price;
+    if (transactionsList) {
+      return transactionsList.reduce(
+        (acc, curr) => {
+          if (curr.type === "income") acc["income"] += curr.price;
+          if (curr.type === "outcome") acc["outcome"] += curr.price;
+          acc.total += curr.price;
 
-        return acc;
-      },
-      {
-        income: 0,
-        outcome: 0,
-        total: 0,
-      }
-    );
+          return acc;
+        },
+        {
+          income: 0,
+          outcome: 0,
+          total: 0,
+        }
+      );
+    } else return {
+      income: 0,
+      outcome: 0,
+      total: 0,
+    }
   },
 });
-
-// export const transactionsAsync = selector({
-//   key: "transactionsAsync",
-//   get: async () => {
-//     const response = await requestsAPI.getAllTransactions();
-//     return response;
-//   },
-// });
-
 
 // export const transactionsSummary = selector({
 //   key: "TransactionsSummary",
@@ -51,7 +59,7 @@ export const transactionsSummary = selector({
 //           if (curr.type === "income") acc["income"] += curr.price;
 //           if (curr.type === "outcome") acc["outcome"] += curr.price;
 //           acc.total += curr.price;
-  
+
 //           return acc;
 //         },
 //         {

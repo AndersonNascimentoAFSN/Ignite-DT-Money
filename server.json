@@ -1,5 +1,5 @@
 {
-  "transactions": { "transactions": [
+  "transactions": [
     {
       "id": "abda28c3-1a69-4446-bec9-25fa8d10ecf1",
       "title": "Desenvolvimento Web",
@@ -16,5 +16,5 @@
       "price": -150,
       "created_at": "2023-02-11T20:24:36.349Z"
     }
-  ]}
+  ]
 }
